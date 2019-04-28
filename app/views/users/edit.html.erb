@@ -1,0 +1,36 @@
+<h1>Users info</h1>
+
+
+<% if @user.errors.any? %>
+  <div class="alert alert-warning">
+  	<p>error</p>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+
+<%= form_for(@user) do |f| %>
+    <h4>Name</h4>
+    <div><%= f.text_field :name, class: "name" %></div>
+
+    <h4>Image</h4>
+    <div><%= f.attachment_field :image, class: "user_image"  %></div>
+
+    <h4>Introduction</h4>
+    <div><%= f.text_area :introduction, class: "introduction" %></div>
+
+
+<div>
+    <%= f.submit 'Update User' %>
+</div>
+
+
+
+
+<% end %>

@@ -1,0 +1,49 @@
+
+
+<div class="container">
+    <div class="row">
+
+<%= render 'users/side', user: @user, books: @books %>
+
+<div class="col-lg-8">
+
+
+
+<h2>Book detail</h2>
+
+       	<table class="table table-striped">
+
+
+
+
+	<tr>
+		<td> <%= attachment_image_tag @user, :image, :fill, 100, 100, fallback: 'noimage.jpeg' %>
+
+
+			<div>
+
+			<%= link_to @user.name, user_path(@user.id), class: "user_#{@user.id}" %></div>
+
+		</td>
+
+		<td><%= link_to @book.title, book_path(@book.id), class: "book_#{@book.id}" %></td>
+
+		<td><%= @book.opinion %></td>
+
+
+
+
+	
+<% if current_user == @book.user %>
+
+		<td><%= link_to "Edit", edit_book_path(@book), class: "edit_book_#{@book.id}" %></td>
+
+		<td><%= link_to "Destroy", book_path(@book), class: "destory_book_#{@book.id} ",  method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+
+
+<% end %>
+
+</tr>
+
+
+</table>
