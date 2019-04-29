@@ -1,17 +1,16 @@
-
-
 <div class="container">
-    <div class="row">
+  <div class="row">
       <% if @book.errors.any? %>
-  <div class="alert alert-warning">
-    <p>error</p>
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="alert alert-warning">
+          <p>error</p>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
       <% end %>
-    </ul>
   </div>
-<% end %>
+</div>
 
 
 <%= render 'users/side', user: current_user, books: @book %>
@@ -23,23 +22,20 @@
 <table class="table table-striped">
 
 
-                    <tr>
-                    	<th> </th>
-                    	<th>Title</th>
-                    	<th>Opinion</th>
-                    </tr>
+    <tr>
+      <th> </th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
 
- <% @books.each do |book| %>
+     <% @books.each do |book| %>
 
-          					<tr>
-                   	   <td> <%= attachment_image_tag(book.user, :image, :fill, 50, 50, fallback: 'noimage_mini.jpeg') %></td>
-
-
-                       <td><%= link_to book.title, book_path(book.id), class: "book_#{book.id}" %></td>
-
-
-                       <td><%= book.opinion %></td>
-                    </tr>
- <% end %>
+        <tr>
+          <td><%= link_to attachment_image_tag(book.user, :image, :fill, 50, 50, fallback: 'noimage_mini.jpeg'), user_path(book.user.id),class: "user_#{book.user.id}" %></td>
+          
+          <td><%= link_to book.title, book_path(book.id), class: "book_#{book.id}" %></td>
+          <td><%= book.opinion %></td>
+        </tr>
+     <% end %>
 
 </table>
